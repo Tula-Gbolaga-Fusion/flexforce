@@ -5,9 +5,11 @@ import {
   Register as JobSeekerRegistration,
   Profile as JobSeekerProfile,
   Jobs,
+  JobseekerComingSoon,
 } from "./pages/JobSeeker";
 import { Login } from "./pages";
 import {
+  AgencyComingSoon,
   AgencyDashboard,
   AgencyRegistration,
   JobAndApplicants,
@@ -34,12 +36,14 @@ function App() {
         <Route path="Registration" element={<JobSeekerRegistration />} />
         <Route path="Profile" element={<JobSeekerProfile />} />
         <Route path="Jobs" element={<Jobs />} />
+        <Route path="comingsoon" element={<JobseekerComingSoon />} />
       </Route>
 
       {/* Agency pages */}
       <Route path="/Agency">
         <Route index element={<AgencyDashboard />} />
         <Route path="registration" element={<AgencyRegistration />} />
+        <Route path="comingsoon" element={<AgencyComingSoon />} />
         <Route path="Jobs/:jobId" element={<JobAndApplicants />} />
         <Route path="staff" element={<StaffList />} />
       </Route>

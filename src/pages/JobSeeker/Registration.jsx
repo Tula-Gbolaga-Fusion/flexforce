@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import { Button, Input } from "../../components/UI";
 import Logo from "../../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const submitFunc = (e) => {
+    e.preventDefault();
+    navigate("/jobseeker");
+  };
   return (
     <div className="bg-gray-100 px-2">
       <div className="flex items-center justify-center min-h-screen">
@@ -51,7 +57,7 @@ const Register = () => {
             </div>
 
             <div className="flex items-center justify-center my-2">
-              <Button title="Sign Up" />
+              <Button title="Sign Up" onClick={submitFunc} />
             </div>
           </form>
         </div>

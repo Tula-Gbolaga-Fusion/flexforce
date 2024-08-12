@@ -1,13 +1,26 @@
 import { Link } from "react-router-dom";
 import { Button, Input } from "../components/UI";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
 
 const Login = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const isAdmin = pathname === "/login/admin";
   const isAgency = pathname === "/login/agency";
   const isJobSeeker = pathname === "/login";
+
+  const submitFunc = (e) => {
+    e.preventDefault();
+    let redirectPath = "/jobseeker";
+    if (isAdmin) {
+      redirectPath = "/admin";
+    }
+    if (isAgency) {
+      redirectPath = "/agency";
+    }
+    navigate(redirectPath);
+  };
 
   return (
     <div className="bg-gray-100 px-2">
@@ -53,7 +66,7 @@ const Login = () => {
             />
             <p className="text-blue-500 italic">Forgot Password?</p>
             <div className="flex items-center justify-center my-2">
-              <Button title="Sign In" />
+              <Button title="Sign In" onClick={submitFunc} />
             </div>
           </form>
         </div>

@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import { Button, Input, Textarea } from "../../components/UI";
 import Logo from "../../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const AgencyRegistration = () => {
+  const navigate = useNavigate();
+  const submitFunc = (e) => {
+    e.preventDefault();
+    navigate("/agency");
+  };
   return (
     <div className="bg-gray-100 px-2">
       <div className="flex items-center justify-center min-h-screen">
@@ -72,7 +78,7 @@ const AgencyRegistration = () => {
             </div>
 
             <div className="flex items-center justify-center my-2">
-              <Button title="Sign Up" />
+              <Button title="Sign Up" onClick={submitFunc} />
             </div>
           </form>
         </div>

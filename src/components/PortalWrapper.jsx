@@ -45,25 +45,25 @@ const AgencyMenuItems = ({ isOpen }) => {
       <MenuItem isOpen={isOpen} name="Home" to="/agency">
         <FaHome className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Jobs" to="/jobseeker">
+      <MenuItem isOpen={isOpen} name="Jobs" to="/agency/comingsoon">
         <FaBriefcase className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Applications" to="/jobseeker">
+      {/* <MenuItem isOpen={isOpen} name="Applications" to="/jobseeker">
         <FaFileAlt className="text-2xl" />
-      </MenuItem>
-      <MenuItem isOpen={isOpen} name="Shifts" to="/jobseeker">
+      </MenuItem> */}
+      <MenuItem isOpen={isOpen} name="Booked Jobs" to="/agency/comingsoon">
         <MdSchedule className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Job Seekers" to="/login">
+      <MenuItem isOpen={isOpen} name="Job Seekers" to="/agency/comingsoon">
         <GrUserWorker className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Requests" to="/login">
+      <MenuItem isOpen={isOpen} name="Requests" to="/agency/comingsoon">
         <FaClipboardCheck className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Staff" to="/login">
+      <MenuItem isOpen={isOpen} name="Staff" to="/agency/staff">
         <FaUserFriends className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Profile" to="/agency">
+      <MenuItem isOpen={isOpen} name="Profile" to="/agency/comingsoon">
         <FaUser className="text-2xl" />
       </MenuItem>
       <MenuItem isOpen={isOpen} name="Logout" to="/login/agency">
@@ -80,22 +80,22 @@ const JobseekerMenuItems = ({ isOpen }) => {
         <FaHome className="text-2xl" />
       </MenuItem>
 
-      <MenuItem isOpen={isOpen} name="Jobs" to="/jobseeker">
+      <MenuItem isOpen={isOpen} name="Jobs" to="/jobseeker/jobs">
         <FaBriefcase className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Applications" to="/jobseeker">
+      <MenuItem isOpen={isOpen} name="Applications" to="/jobseeker/comingsoon">
         <FaFileAlt className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Shifts" to="/jobseeker">
+      <MenuItem isOpen={isOpen} name="Shifts" to="/jobseeker/comingsoon">
         <MdSchedule className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Invites" to="/jobseeker">
+      <MenuItem isOpen={isOpen} name="Invites" to="/jobseeker/comingsoon">
         <GrUserAdd className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Profile" to="/jobseeker">
+      <MenuItem isOpen={isOpen} name="Profile" to="/jobseeker/comingsoon">
         <FaUser className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Agencies" to="/jobseeker">
+      <MenuItem isOpen={isOpen} name="Agencies" to="/jobseeker/comingsoon">
         <GrOrganization className="text-2xl" />
       </MenuItem>
       <MenuItem isOpen={isOpen} name="Logout" to="/login">
@@ -115,7 +115,7 @@ const Sidebar = ({ isOpen, setIsSidebarOpen }) => {
       onMouseEnter={() => setIsSidebarOpen(true)}
       onMouseLeave={() => setIsSidebarOpen(false)}
       className={`fixed inset-0 top-0 h-full overflow-x-hidden  bg-gray-700 z-30 p-5 pt-[70px]  flex flex-col items-center transition-width duration-300 ${
-        isOpen ? "w-64" : "w-16"
+        isOpen ? "w-64" : "md:w-16 hidden md:block  "
       }`}
     >
       {isAdmin && <AdminMenuItems isOpen={isOpen} />}
@@ -147,7 +147,7 @@ const PortalWrapper = ({ children }) => {
       </nav>
       <Sidebar isOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
       <div
-        className={`flex-grow ml-1 transition-margin duration-300 bg-white pl-16 mt-[70px]`}
+        className={`flex-grow ml-1 transition-margin duration-300 bg-white md:pl-16 mt-[70px]`}
       >
         {children}
       </div>
