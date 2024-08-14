@@ -13,8 +13,8 @@ import {
 } from "./pages/JobSeeker";
 import { Login } from "./pages";
 import {
+  AgencyStaffProfile,
   JobSeekerProfile,
-  JobSeekerProfile2,
   JobSeekerProfileForm,
   JobSeekerProfileForm2,
 } from "./components";
@@ -50,8 +50,7 @@ function App() {
         {/* <Route path="Profile" element={<JobSeekerProfile />} /> */}
         <Route path="Jobs" element={<Jobs />} />
         <Route path="comingsoon" element={<JobseekerComingSoon />} />
-        <Route path="profile/claudeai" element={<JobSeekerProfile />} />
-        <Route path="profile/chatgpt" element={<JobSeekerProfile2 />} />
+        <Route path="profile" element={<JobSeekerProfile />} />
         <Route path="profileform/claudeai" element={<JobSeekerProfileForm />} />
         <Route path="profileform/chatgpt" element={<JobSeekerProfileForm2 />} />
         <Route path="Applications" element={<JobSeekerApplications />} />
@@ -70,6 +69,7 @@ function App() {
         <Route path="staff" element={<StaffList />} />
         <Route path="contractors" element={<JobSeekersList />} />
         <Route path="bookedjobs" element={<BookedJobs />} />
+        <Route path="profile" element={<AgencyStaffProfile />} />
       </Route>
 
       {/* admin pages */}

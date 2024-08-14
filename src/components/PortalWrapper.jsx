@@ -58,7 +58,7 @@ const AgencyMenuItems = ({ isOpen }) => {
       <MenuItem isOpen={isOpen} name="Staff" to="/agency/staff">
         <FaUserFriends className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Profile" to="/agency/comingsoon">
+      <MenuItem isOpen={isOpen} name="Profile" to="/agency/profile">
         <FaUser className="text-2xl" />
       </MenuItem>
       <MenuItem isOpen={isOpen} name="Logout" to="/login/agency">
@@ -91,7 +91,7 @@ const JobseekerMenuItems = ({ isOpen }) => {
       <MenuItem isOpen={isOpen} name="Invites" to="/jobseeker/invites">
         <GrUserAdd className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Profile" to="/jobseeker/comingsoon">
+      <MenuItem isOpen={isOpen} name="Profile" to="/jobseeker/profile">
         <FaUser className="text-2xl" />
       </MenuItem>
       <MenuItem isOpen={isOpen} name="Agencies" to="/jobseeker/agencies">

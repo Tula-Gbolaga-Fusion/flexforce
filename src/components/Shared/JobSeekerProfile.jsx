@@ -17,9 +17,6 @@ const JobSeekerProfile = () => {
               />
             </div>
             <div className="p-8">
-              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                {userData?.withAgency ? "Agency Worker" : "Independent Worker"}
-              </div>
               <h2 className="mt-2 text-2xl leading-8 font-semibold text-gray-900">
                 {userData?.firstName} {userData?.lastName}
               </h2>
@@ -84,7 +81,7 @@ const JobSeekerProfile = () => {
 
           <div className="px-8 py-4 bg-gray-50">
             <h3 className="text-lg font-semibold text-gray-900">Share Code</h3>
-            <p className="mt-2 text-xl font-mono">
+            <p className="mt-2 text-xl font-mono text-gray-500">
               {userData?.shareCode?.code}
             </p>
             <p className="text-sm text-gray-500">
