@@ -3,7 +3,7 @@ import { Button, PortalWrapper } from "../../components";
 import { Table } from "../../components";
 import { agencies } from "../../utils/dummyData";
 
-const AgencyList = () => {
+const AgencyOverview = () => {
   const agencyListColumn = useMemo(
     () => [
       {
@@ -68,7 +68,7 @@ const AgencyList = () => {
               statusColor = "bg-yellow-100 text-yellow-800";
               break;
             case "Declined":
-              statusColor = "bg-red-100 text-red-800";
+              statusColor = "bg-gray-100 text-gray-800";
               break;
             default:
               statusColor = "bg-gray-100 text-gray-800";
@@ -77,7 +77,15 @@ const AgencyList = () => {
             <span
               className={`px-3 inline-flex leading-5 font-semibold rounded-full ${statusColor}`}
             >
-              {row.status}
+              {`${
+                row.status === "Approved"
+                  ? "Onboarded"
+                  : row.status === "Pending"
+                  ? "Request Sent"
+                  : row.status === "Declined"
+                  ? "Not Onboarded"
+                  : ""
+              }`}
             </span>
           );
         },
@@ -85,7 +93,12 @@ const AgencyList = () => {
       {
         header: "Action",
         accessor: "action",
-        cell: (row) => <Button title={"View"} />,
+        cell: (row) => (
+          <div className="flex justify-center">
+            <Button title={"View"} />{" "}
+            {row.status === "Declined" && <Button title={"Apply"} />}
+          </div>
+        ),
       },
     ],
     []
@@ -99,4 +112,4 @@ const AgencyList = () => {
     </PortalWrapper>
   );
 };
-export { AgencyList };
+export { AgencyOverview };

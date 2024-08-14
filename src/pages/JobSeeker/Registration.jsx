@@ -19,6 +19,14 @@ const Register = () => {
           <h2 className="text-center font-bold mb-6">
             Create your Job Seeker Account
           </h2>
+          <div className="flex justify-center my-3">
+            <Button
+              title={"Agency Registration"}
+              onClick={() => {
+                navigate("/agency/registration");
+              }}
+            />
+          </div>
           <h3 className="text-center">
             Already have an account?
             <Link to="/login" className="text-blue-500">

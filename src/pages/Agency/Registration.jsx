@@ -16,9 +16,17 @@ const AgencyRegistration = () => {
           <div className="flex justify-center mb-2 ">
             <img src={Logo} alt="cardimg" className="max-w-md w-full" />
           </div>
-          <h2 className="text-center font-bold mb-6">
+          <h2 className="text-center font-bold mb-3">
             Create your Agency profile
           </h2>
+          <div className="flex justify-center my-3">
+            <Button
+              title={"Jobseeker Registration"}
+              onClick={() => {
+                navigate("/jobseeker/registration");
+              }}
+            />
+          </div>
           <h3 className="text-center">
             Already have an account?
             <Link to="/login/agency" className="text-blue-500">

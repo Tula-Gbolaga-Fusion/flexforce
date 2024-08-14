@@ -29,7 +29,7 @@ const Login = () => {
           <div className="flex justify-center mb-2">
             <img src={Logo} alt="cardimg" />
           </div>
-          <h2 className="text-center font-bold mb-6">
+          <h2 className="text-center text-[20px] font-bold mb-3">
             {`Login as ${
               isAdmin
                 ? " an Admin"
@@ -40,9 +40,35 @@ const Login = () => {
                 : ""
             } `}
           </h2>
+          <div className="flex justify-center my-3">
+            {!isJobSeeker && (
+              <Button
+                title={"Jobseeker Login"}
+                onClick={() => {
+                  navigate("/login");
+                }}
+              />
+            )}
+            {!isAgency && (
+              <Button
+                title={"Agency Login"}
+                onClick={() => {
+                  navigate("/login/agency");
+                }}
+              />
+            )}
+            {!isAdmin && (
+              <Button
+                title={"Admin Login"}
+                onClick={() => {
+                  navigate("/login/admin");
+                }}
+              />
+            )}
+          </div>
           {(isAgency || isJobSeeker) && (
             <h3 className="text-center">
-              Don't have an account?
+              Don't have an account?{" "}
               <Link
                 to={`${
                   isJobSeeker

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 
-const Table = ({ tableData, onRowClick, columns }) => {
+const Table = ({ tableData, onRowClick = () => {}, columns }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 

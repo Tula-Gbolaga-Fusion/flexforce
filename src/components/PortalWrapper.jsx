@@ -11,7 +11,6 @@ import {
   FaBriefcase,
   FaFileAlt,
   FaUserFriends,
-  FaClipboardCheck,
 } from "react-icons/fa";
 import Logo from "../assets/logo.png";
 import { GrOrganization, GrUserAdd, GrUserWorker } from "react-icons/gr";
@@ -45,21 +44,17 @@ const AgencyMenuItems = ({ isOpen }) => {
       <MenuItem isOpen={isOpen} name="Home" to="/agency">
         <FaHome className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Jobs" to="/agency/comingsoon">
+      <MenuItem isOpen={isOpen} name="Jobs" to="/agency/jobs">
         <FaBriefcase className="text-2xl" />
       </MenuItem>
-      {/* <MenuItem isOpen={isOpen} name="Applications" to="/jobseeker">
-        <FaFileAlt className="text-2xl" />
-      </MenuItem> */}
-      <MenuItem isOpen={isOpen} name="Booked Jobs" to="/agency/comingsoon">
+
+      <MenuItem isOpen={isOpen} name="Booked Jobs" to="/agency/bookedjobs">
         <MdSchedule className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Job Seekers" to="/agency/comingsoon">
+      <MenuItem isOpen={isOpen} name="Job Seekers" to="/agency/contractors">
         <GrUserWorker className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Requests" to="/agency/comingsoon">
-        <FaClipboardCheck className="text-2xl" />
-      </MenuItem>
+
       <MenuItem isOpen={isOpen} name="Staff" to="/agency/staff">
         <FaUserFriends className="text-2xl" />
       </MenuItem>
@@ -83,19 +78,23 @@ const JobseekerMenuItems = ({ isOpen }) => {
       <MenuItem isOpen={isOpen} name="Jobs" to="/jobseeker/jobs">
         <FaBriefcase className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Applications" to="/jobseeker/comingsoon">
+      <MenuItem
+        isOpen={isOpen}
+        name="Applications"
+        to="/jobseeker/applications"
+      >
         <FaFileAlt className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Shifts" to="/jobseeker/comingsoon">
+      <MenuItem isOpen={isOpen} name="Shifts" to="/jobseeker/shifts">
         <MdSchedule className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Invites" to="/jobseeker/comingsoon">
+      <MenuItem isOpen={isOpen} name="Invites" to="/jobseeker/invites">
         <GrUserAdd className="text-2xl" />
       </MenuItem>
       <MenuItem isOpen={isOpen} name="Profile" to="/jobseeker/comingsoon">
         <FaUser className="text-2xl" />
       </MenuItem>
-      <MenuItem isOpen={isOpen} name="Agencies" to="/jobseeker/comingsoon">
+      <MenuItem isOpen={isOpen} name="Agencies" to="/jobseeker/agencies">
         <GrOrganization className="text-2xl" />
       </MenuItem>
       <MenuItem isOpen={isOpen} name="Logout" to="/login">

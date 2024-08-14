@@ -11,7 +11,7 @@ import { jobsList } from "../../utils/dummyData";
 
 const JobDetails = ({ jobId }) => {
   const jobData = jobsList?.find((data) => {
-    return data?.id === 15;
+    return data?.id === +jobId;
   });
 
   const IconWrapper = ({ children }) => (

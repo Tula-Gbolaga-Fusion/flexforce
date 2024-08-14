@@ -1,3 +1,56 @@
+import { faker } from "@faker-js/faker";
+
+const generateJobSeekers = () => {
+  const jobSeekers = [];
+
+  for (let i = 0; i < 20; i++) {
+    const jobSeeker = {
+      firstName: faker.firstName(),
+      lastName: faker.lastName(),
+      email: faker.internet.email(),
+      phoneNumber: faker.phone.phoneNumber(),
+      profilePicture: faker.image.avatar(),
+      dateOfBirth: faker.date
+        .past(30, new Date("2000-01-01"))
+        .toISOString()
+        .split("T")[0],
+      aboutMe: faker.lorem.sentences(3),
+      totalJobsDone: faker.random.number({ min: 1, max: 100 }),
+      withAgency: faker.random.boolean(),
+      totalHoursWorked: faker.random.number({ min: 100, max: 5000 }),
+      lastActiveDate: faker.date.recent().toISOString().split("T")[0],
+      documents: [
+        {
+          documentName: "CV",
+          lastUpdated: faker.date.past().toISOString().split("T")[0],
+          documentUrl: faker.internet.url(),
+        },
+        {
+          documentName: "International Passport",
+          lastUpdated: faker.date.past().toISOString().split("T")[0],
+          documentUrl: faker.internet.url(),
+        },
+        {
+          documentName: "BRP",
+          lastUpdated: faker.date.past().toISOString().split("T")[0],
+          documentUrl: faker.internet.url(),
+        },
+        {
+          documentName: "National Insurance",
+          lastUpdated: faker.date.past().toISOString().split("T")[0],
+          documentUrl: faker.internet.url(),
+        },
+      ],
+      sharecode: faker.random.alphaNumeric(8),
+      sharecodeExpiry: faker.date.future().toISOString().split("T")[0],
+    };
+
+    jobSeekers.push(jobSeeker);
+  }
+
+  return jobSeekers;
+};
+
 const jobsList = [
   {
     id: 1,
@@ -880,4 +933,1181 @@ const agencies = [
     },
   },
 ];
-export { jobsList, staffList, agencies };
+
+const singleJobSeeker = [
+  {
+    firstName: "John",
+    lastName: "Doe",
+    email: "john.doe@example.com",
+    phoneNumber: "+44 7123 456789",
+    profilePicture: "https://randomuser.me/api/portraits/men/1.jpg",
+    dateOfBirth: "1990-05-15",
+    aboutMe:
+      "Experienced software developer with a passion for creating efficient and scalable applications. Skilled in React, Node.js, and Python. Always eager to learn new technologies and contribute to innovative projects. I thrive in collaborative environments and enjoy solving complex problems.",
+    totalJobsDone: 15,
+    withAgency: false,
+    totalHoursWorked: 2500,
+    lastActiveDate: "2024-08-10",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "A1B2C3D4",
+      expiryDate: "2024-09-13",
+    },
+  },
+  // ... (add 19 more similar objects with varied data)
+];
+
+// const generateRandomJobSeeker = (id) => {
+//   const statuses = ["Onboarded", "Not onboarded", "Applied", "Invitation Sent"];
+//   const firstNames = [
+//     "Emma",
+//     "Liam",
+//     "Olivia",
+//     "Noah",
+//     "Ava",
+//     "Ethan",
+//     "Sophia",
+//     "Mason",
+//     "Isabella",
+//     "William",
+//   ];
+//   const lastNames = [
+//     "Smith",
+//     "Johnson",
+//     "Brown",
+//     "Taylor",
+//     "Miller",
+//     "Wilson",
+//     "Moore",
+//     "Anderson",
+//     "Thomas",
+//     "Jackson",
+//   ];
+
+//   return {
+//     id,
+//     firstName: firstNames[Math.floor(Math.random() * firstNames.length)],
+//     lastName: lastNames[Math.floor(Math.random() * lastNames.length)],
+//     email: `${firstNames[
+//       Math.floor(Math.random() * firstNames.length)
+//     ].toLowerCase()}.${lastNames[
+//       Math.floor(Math.random() * lastNames.length)
+//     ].toLowerCase()}@example.com`,
+//     phoneNumber: `+44 ${Math.floor(Math.random() * 10000000000)
+//       .toString()
+//       .padStart(10, "0")}`,
+//     profilePicture: `https://randomuser.me/api/portraits/${
+//       Math.random() > 0.5 ? "men" : "women"
+//     }/${id}.jpg`,
+//     dateOfBirth: new Date(
+//       1970 + Math.floor(Math.random() * 30),
+//       Math.floor(Math.random() * 12),
+//       Math.floor(Math.random() * 28) + 1
+//     )
+//       .toISOString()
+//       .split("T")[0],
+//     aboutMe: "Professional with diverse skills and experience in the industry.",
+//     totalJobsDone: Math.floor(Math.random() * 50),
+//     withAgency: Math.random() > 0.5,
+//     totalHoursWorked: Math.floor(Math.random() * 5000),
+//     lastActiveDate: new Date(
+//       Date.now() - Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000
+//     )
+//       .toISOString()
+//       .split("T")[0],
+//     documents: [
+//       {
+//         name: "CV",
+//         lastUpdated: "2024-07-01",
+//         url: "https://example.com/cv.pdf",
+//       },
+//       {
+//         name: "International Passport",
+//         lastUpdated: "2023-12-15",
+//         url: "https://example.com/passport.pdf",
+//       },
+//       {
+//         name: "BRP",
+//         lastUpdated: "2024-01-10",
+//         url: "https://example.com/brp.pdf",
+//       },
+//       {
+//         name: "National Insurance",
+//         lastUpdated: "2024-02-20",
+//         url: "https://example.com/ni.pdf",
+//       },
+//     ],
+//     shareCode: {
+//       code: Math.random().toString(36).substring(2, 10).toUpperCase(),
+//       expiryDate: new Date(
+//         Date.now() + Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000
+//       )
+//         .toISOString()
+//         .split("T")[0],
+//     },
+//     agencyStatus: statuses[Math.floor(Math.random() * statuses.length)],
+//   };
+// };
+
+// Generate 25 job seekers
+// const jobSeekers = Array.from({ length: 25 }, (_, i) =>
+//   generateRandomJobSeeker(i + 1)
+// );
+
+const jobSeekers = [
+  {
+    id: 1,
+    firstName: "Mason",
+    lastName: "Miller",
+    email: "sophia.brown@example.com",
+    phoneNumber: "+44 3531003945",
+    profilePicture: "https://randomuser.me/api/portraits/women/1.jpg",
+    dateOfBirth: "1984-09-07",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 13,
+    withAgency: false,
+    totalHoursWorked: 4345,
+    lastActiveDate: "2024-07-28",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "D0EVAYWA",
+      expiryDate: "2024-09-09",
+    },
+    agencyStatus: "Onboarded",
+  },
+  {
+    id: 2,
+    firstName: "Noah",
+    lastName: "Thomas",
+    email: "ava.thomas@example.com",
+    phoneNumber: "+44 8312508361",
+    profilePicture: "https://randomuser.me/api/portraits/women/2.jpg",
+    dateOfBirth: "1994-01-15",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 33,
+    withAgency: true,
+    totalHoursWorked: 441,
+    lastActiveDate: "2024-08-12",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "70V9V9QD",
+      expiryDate: "2024-09-06",
+    },
+    agencyStatus: "Invitation Sent",
+  },
+  {
+    id: 3,
+    firstName: "Sophia",
+    lastName: "Thomas",
+    email: "mason.moore@example.com",
+    phoneNumber: "+44 1118290468",
+    profilePicture: "https://randomuser.me/api/portraits/men/3.jpg",
+    dateOfBirth: "1976-05-22",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 13,
+    withAgency: false,
+    totalHoursWorked: 27,
+    lastActiveDate: "2024-08-07",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "MR0VB6MX",
+      expiryDate: "2024-08-21",
+    },
+    agencyStatus: "Not onboarded",
+  },
+  {
+    id: 4,
+    firstName: "Mason",
+    lastName: "Anderson",
+    email: "olivia.thomas@example.com",
+    phoneNumber: "+44 2064859422",
+    profilePicture: "https://randomuser.me/api/portraits/men/4.jpg",
+    dateOfBirth: "1975-02-09",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 9,
+    withAgency: false,
+    totalHoursWorked: 3836,
+    lastActiveDate: "2024-07-24",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "7PUKM44O",
+      expiryDate: "2024-09-11",
+    },
+    agencyStatus: "Onboarded",
+  },
+  {
+    id: 5,
+    firstName: "Ava",
+    lastName: "Moore",
+    email: "ethan.moore@example.com",
+    phoneNumber: "+44 7910137055",
+    profilePicture: "https://randomuser.me/api/portraits/men/5.jpg",
+    dateOfBirth: "1979-09-22",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 4,
+    withAgency: false,
+    totalHoursWorked: 4425,
+    lastActiveDate: "2024-07-26",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "99KRNCRE",
+      expiryDate: "2024-09-10",
+    },
+    agencyStatus: "Applied",
+  },
+  {
+    id: 6,
+    firstName: "Olivia",
+    lastName: "Moore",
+    email: "ethan.johnson@example.com",
+    phoneNumber: "+44 9216010885",
+    profilePicture: "https://randomuser.me/api/portraits/men/6.jpg",
+    dateOfBirth: "1982-06-04",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 4,
+    withAgency: true,
+    totalHoursWorked: 1824,
+    lastActiveDate: "2024-08-11",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "4C6O5VO2",
+      expiryDate: "2024-08-29",
+    },
+    agencyStatus: "Not onboarded",
+  },
+  {
+    id: 7,
+    firstName: "Mason",
+    lastName: "Brown",
+    email: "ethan.smith@example.com",
+    phoneNumber: "+44 8275404367",
+    profilePicture: "https://randomuser.me/api/portraits/men/7.jpg",
+    dateOfBirth: "1989-03-25",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 27,
+    withAgency: true,
+    totalHoursWorked: 4587,
+    lastActiveDate: "2024-07-15",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "AHOI4WGU",
+      expiryDate: "2024-09-07",
+    },
+    agencyStatus: "Applied",
+  },
+  {
+    id: 8,
+    firstName: "Noah",
+    lastName: "Johnson",
+    email: "ethan.jackson@example.com",
+    phoneNumber: "+44 5233689415",
+    profilePicture: "https://randomuser.me/api/portraits/women/8.jpg",
+    dateOfBirth: "1999-04-03",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 18,
+    withAgency: false,
+    totalHoursWorked: 3840,
+    lastActiveDate: "2024-08-08",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "YJRKO2IG",
+      expiryDate: "2024-09-05",
+    },
+    agencyStatus: "Invitation Sent",
+  },
+  {
+    id: 9,
+    firstName: "Liam",
+    lastName: "Johnson",
+    email: "sophia.brown@example.com",
+    phoneNumber: "+44 4368956704",
+    profilePicture: "https://randomuser.me/api/portraits/women/9.jpg",
+    dateOfBirth: "1991-04-16",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 38,
+    withAgency: true,
+    totalHoursWorked: 27,
+    lastActiveDate: "2024-08-10",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "A62HZ50S",
+      expiryDate: "2024-08-27",
+    },
+    agencyStatus: "Invitation Sent",
+  },
+  {
+    id: 10,
+    firstName: "William",
+    lastName: "Miller",
+    email: "isabella.wilson@example.com",
+    phoneNumber: "+44 5908034982",
+    profilePicture: "https://randomuser.me/api/portraits/women/10.jpg",
+    dateOfBirth: "1998-04-27",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 0,
+    withAgency: true,
+    totalHoursWorked: 4650,
+    lastActiveDate: "2024-08-04",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "KHR98F81",
+      expiryDate: "2024-09-09",
+    },
+    agencyStatus: "Not onboarded",
+  },
+  {
+    id: 11,
+    firstName: "Noah",
+    lastName: "Anderson",
+    email: "mason.miller@example.com",
+    phoneNumber: "+44 6612647114",
+    profilePicture: "https://randomuser.me/api/portraits/women/11.jpg",
+    dateOfBirth: "1984-01-28",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 21,
+    withAgency: true,
+    totalHoursWorked: 4095,
+    lastActiveDate: "2024-08-05",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "ZW3VZO8G",
+      expiryDate: "2024-09-05",
+    },
+    agencyStatus: "Applied",
+  },
+  {
+    id: 12,
+    firstName: "Isabella",
+    lastName: "Moore",
+    email: "mason.brown@example.com",
+    phoneNumber: "+44 5474646619",
+    profilePicture: "https://randomuser.me/api/portraits/men/12.jpg",
+    dateOfBirth: "1987-05-19",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 37,
+    withAgency: false,
+    totalHoursWorked: 438,
+    lastActiveDate: "2024-07-30",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "U4K0VEP6",
+      expiryDate: "2024-08-13",
+    },
+    agencyStatus: "Onboarded",
+  },
+  {
+    id: 13,
+    firstName: "Noah",
+    lastName: "Wilson",
+    email: "noah.anderson@example.com",
+    phoneNumber: "+44 8030419531",
+    profilePicture: "https://randomuser.me/api/portraits/women/13.jpg",
+    dateOfBirth: "1984-03-23",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 18,
+    withAgency: true,
+    totalHoursWorked: 2805,
+    lastActiveDate: "2024-07-21",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "QY978TFQ",
+      expiryDate: "2024-09-08",
+    },
+    agencyStatus: "Not onboarded",
+  },
+  {
+    id: 14,
+    firstName: "Ava",
+    lastName: "Smith",
+    email: "noah.miller@example.com",
+    phoneNumber: "+44 6085348989",
+    profilePicture: "https://randomuser.me/api/portraits/women/14.jpg",
+    dateOfBirth: "1970-08-06",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 3,
+    withAgency: false,
+    totalHoursWorked: 878,
+    lastActiveDate: "2024-07-28",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "VA6F9HYW",
+      expiryDate: "2024-08-26",
+    },
+    agencyStatus: "Applied",
+  },
+  {
+    id: 15,
+    firstName: "Isabella",
+    lastName: "Moore",
+    email: "noah.anderson@example.com",
+    phoneNumber: "+44 3873081825",
+    profilePicture: "https://randomuser.me/api/portraits/men/15.jpg",
+    dateOfBirth: "1973-09-18",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 21,
+    withAgency: false,
+    totalHoursWorked: 713,
+    lastActiveDate: "2024-07-16",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "ZBHU0LWR",
+      expiryDate: "2024-08-13",
+    },
+    agencyStatus: "Invitation Sent",
+  },
+  {
+    id: 16,
+    firstName: "Ethan",
+    lastName: "Thomas",
+    email: "william.smith@example.com",
+    phoneNumber: "+44 6743729490",
+    profilePicture: "https://randomuser.me/api/portraits/men/16.jpg",
+    dateOfBirth: "1992-05-23",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 28,
+    withAgency: true,
+    totalHoursWorked: 399,
+    lastActiveDate: "2024-08-03",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "3DH28D4L",
+      expiryDate: "2024-09-03",
+    },
+    agencyStatus: "Onboarded",
+  },
+  {
+    id: 17,
+    firstName: "Olivia",
+    lastName: "Taylor",
+    email: "mason.taylor@example.com",
+    phoneNumber: "+44 4993597976",
+    profilePicture: "https://randomuser.me/api/portraits/men/17.jpg",
+    dateOfBirth: "1972-09-20",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 23,
+    withAgency: true,
+    totalHoursWorked: 3486,
+    lastActiveDate: "2024-07-24",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "AQUK4U63",
+      expiryDate: "2024-09-04",
+    },
+    agencyStatus: "Not onboarded",
+  },
+  {
+    id: 18,
+    firstName: "Liam",
+    lastName: "Anderson",
+    email: "william.taylor@example.com",
+    phoneNumber: "+44 1119754012",
+    profilePicture: "https://randomuser.me/api/portraits/women/18.jpg",
+    dateOfBirth: "1991-12-18",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 24,
+    withAgency: true,
+    totalHoursWorked: 987,
+    lastActiveDate: "2024-08-11",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "KFTN437X",
+      expiryDate: "2024-08-30",
+    },
+    agencyStatus: "Applied",
+  },
+  {
+    id: 19,
+    firstName: "Emma",
+    lastName: "Thomas",
+    email: "sophia.wilson@example.com",
+    phoneNumber: "+44 4027737797",
+    profilePicture: "https://randomuser.me/api/portraits/women/19.jpg",
+    dateOfBirth: "1986-08-06",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 49,
+    withAgency: false,
+    totalHoursWorked: 2957,
+    lastActiveDate: "2024-08-02",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "Y1F88KQA",
+      expiryDate: "2024-08-28",
+    },
+    agencyStatus: "Applied",
+  },
+  {
+    id: 20,
+    firstName: "Olivia",
+    lastName: "Smith",
+    email: "ethan.johnson@example.com",
+    phoneNumber: "+44 8782060544",
+    profilePicture: "https://randomuser.me/api/portraits/men/20.jpg",
+    dateOfBirth: "1990-11-02",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 42,
+    withAgency: true,
+    totalHoursWorked: 2251,
+    lastActiveDate: "2024-07-18",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "GEM83OG9",
+      expiryDate: "2024-08-24",
+    },
+    agencyStatus: "Applied",
+  },
+  {
+    id: 21,
+    firstName: "William",
+    lastName: "Brown",
+    email: "olivia.johnson@example.com",
+    phoneNumber: "+44 8580988618",
+    profilePicture: "https://randomuser.me/api/portraits/women/21.jpg",
+    dateOfBirth: "1996-01-04",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 42,
+    withAgency: false,
+    totalHoursWorked: 1413,
+    lastActiveDate: "2024-07-30",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "9P1H3EKS",
+      expiryDate: "2024-08-16",
+    },
+    agencyStatus: "Onboarded",
+  },
+  {
+    id: 22,
+    firstName: "Liam",
+    lastName: "Jackson",
+    email: "william.moore@example.com",
+    phoneNumber: "+44 1506778407",
+    profilePicture: "https://randomuser.me/api/portraits/men/22.jpg",
+    dateOfBirth: "1991-11-11",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 11,
+    withAgency: false,
+    totalHoursWorked: 3794,
+    lastActiveDate: "2024-08-09",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "QJZUOCV9",
+      expiryDate: "2024-09-09",
+    },
+    agencyStatus: "Not onboarded",
+  },
+  {
+    id: 23,
+    firstName: "Isabella",
+    lastName: "Wilson",
+    email: "isabella.jackson@example.com",
+    phoneNumber: "+44 5541767758",
+    profilePicture: "https://randomuser.me/api/portraits/women/23.jpg",
+    dateOfBirth: "1970-10-07",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 28,
+    withAgency: false,
+    totalHoursWorked: 2017,
+    lastActiveDate: "2024-07-15",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "HN5Z7RC9",
+      expiryDate: "2024-09-05",
+    },
+    agencyStatus: "Applied",
+  },
+  {
+    id: 24,
+    firstName: "Isabella",
+    lastName: "Thomas",
+    email: "noah.brown@example.com",
+    phoneNumber: "+44 5448827326",
+    profilePicture: "https://randomuser.me/api/portraits/men/24.jpg",
+    dateOfBirth: "1998-11-19",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 13,
+    withAgency: true,
+    totalHoursWorked: 2985,
+    lastActiveDate: "2024-07-30",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "IZNFZPCE",
+      expiryDate: "2024-08-15",
+    },
+    agencyStatus: "Applied",
+  },
+  {
+    id: 25,
+    firstName: "Isabella",
+    lastName: "Thomas",
+    email: "mason.moore@example.com",
+    phoneNumber: "+44 9938936141",
+    profilePicture: "https://randomuser.me/api/portraits/women/25.jpg",
+    dateOfBirth: "1978-01-13",
+    aboutMe: "Professional with diverse skills and experience in the industry.",
+    totalJobsDone: 25,
+    withAgency: false,
+    totalHoursWorked: 2254,
+    lastActiveDate: "2024-07-24",
+    documents: [
+      {
+        name: "CV",
+        lastUpdated: "2024-07-01",
+        url: "https://example.com/cv.pdf",
+      },
+      {
+        name: "International Passport",
+        lastUpdated: "2023-12-15",
+        url: "https://example.com/passport.pdf",
+      },
+      {
+        name: "BRP",
+        lastUpdated: "2024-01-10",
+        url: "https://example.com/brp.pdf",
+      },
+      {
+        name: "National Insurance",
+        lastUpdated: "2024-02-20",
+        url: "https://example.com/ni.pdf",
+      },
+    ],
+    shareCode: {
+      code: "CRIAS3DR",
+      expiryDate: "2024-08-20",
+    },
+    agencyStatus: "Applied",
+  },
+];
+
+export {
+  jobsList,
+  staffList,
+  agencies,
+  generateJobSeekers,
+  singleJobSeeker,
+  jobSeekers,
+};
