@@ -1,9 +1,18 @@
-import { useMemo } from "react";
-import { Button, PortalWrapper } from "../../components";
+import { useMemo, useState } from "react";
+import {
+  Button,
+  PortalWrapper,
+  AgencyDetailsModal,
+  JobDetailsModal,
+} from "../../components";
 import { Table } from "../../components";
 import { agencies } from "../../utils/dummyData";
 
 const AgencyInvites = () => {
+  const [openAgencyModal, setOpenAgencyModal] = useState(false);
+  const [openJobDetailsModal, setOpenJobDetailsModal] = useState(false);
+  const [agencyId, setAgencyId] = useState("");
+  const [jobId, setJobId] = useState("");
   const agencyListColumn = useMemo(
     () => [
       {
@@ -48,8 +57,26 @@ const AgencyInvites = () => {
         accessor: "action",
         cell: (row) => (
           <div className="flex justify-center">
-            <Button title={"View Agency"} />{" "}
-            {row.status === "Pending" && <Button title={"View Job"} />}
+            <Button
+              title={"View Agency"}
+              onClick={() => {
+                setOpenAgencyModal(true);
+                setAgencyId(
+                  agencies?.findIndex((x) => {
+                    return x.agencyName === row?.agencyName;
+                  })
+                );
+              }}
+            />{" "}
+            {row.status === "Pending" && (
+              <Button
+                title={"View Job"}
+                onClick={() => {
+                  setJobId(13);
+                  setOpenJobDetailsModal(true);
+                }}
+              />
+            )}
           </div>
         ),
       },
@@ -62,6 +89,22 @@ const AgencyInvites = () => {
         <h1 className="text-[20px] text-primary p-5">Agency Invites</h1>
         <Table tableData={agencies?.slice(12, 16)} columns={agencyListColumn} />
       </div>
+      <AgencyDetailsModal
+        isOpen={openAgencyModal}
+        closeFunc={() => {
+          setOpenAgencyModal(false);
+          setAgencyId("");
+        }}
+        agencyId={agencyId}
+      />
+      <JobDetailsModal
+        isOpen={openJobDetailsModal}
+        closeFunc={() => {
+          setOpenJobDetailsModal(false);
+          setJobId("");
+        }}
+        jobId={jobId}
+      />
     </PortalWrapper>
   );
 };

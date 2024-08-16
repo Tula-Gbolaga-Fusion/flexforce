@@ -1,9 +1,11 @@
-import { useMemo } from "react";
-import { Button, PortalWrapper } from "../../components";
+import { useMemo, useState } from "react";
+import { AgencyDetailsModal, Button, PortalWrapper } from "../../components";
 import { Table } from "../../components";
 import { agencies } from "../../utils/dummyData";
 
 const AgencyOverview = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [agencyId, setAgencyId] = useState("");
   const agencyListColumn = useMemo(
     () => [
       {
@@ -95,7 +97,17 @@ const AgencyOverview = () => {
         accessor: "action",
         cell: (row) => (
           <div className="flex justify-center">
-            <Button title={"View"} />{" "}
+            <Button
+              title={"View"}
+              onClick={() => {
+                setIsOpen(true);
+                setAgencyId(
+                  agencies?.findIndex((x) => {
+                    return x.agencyName === row?.agencyName;
+                  })
+                );
+              }}
+            />{" "}
             {row.status === "Declined" && <Button title={"Apply"} />}
           </div>
         ),
@@ -109,6 +121,14 @@ const AgencyOverview = () => {
         <h1 className="text-[20px] text-primary p-5">List of Agencies</h1>
         <Table tableData={agencies} columns={agencyListColumn} />
       </div>
+      <AgencyDetailsModal
+        isOpen={isOpen}
+        closeFunc={() => {
+          setIsOpen(false);
+          setAgencyId("");
+        }}
+        agencyId={agencyId}
+      />
     </PortalWrapper>
   );
 };

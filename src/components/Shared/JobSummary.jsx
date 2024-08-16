@@ -1,6 +1,6 @@
 import { Button } from "../UI";
 import { FaMapMarkerAlt, FaMoneyBillWave } from "react-icons/fa";
-const JobSummary = ({ data }) => {
+const JobSummary = ({ data, onClickView }) => {
   return (
     <div className="text-black flex border-2 rounded-lg overflow-hidden shadow-md">
       <div className="w-1/3 bg-gray-100 p-4 flex flex-col justify-between">
@@ -24,7 +24,13 @@ const JobSummary = ({ data }) => {
         <p className="text-sm line-clamp-4 mb-4">
           {data?.jobDescription?.join(", ")}
         </p>
-        <Button title="View" className="self-end" />
+        <Button
+          title="View"
+          className="self-end"
+          onClick={() => {
+            onClickView(data?.id);
+          }}
+        />
       </div>
     </div>
   );

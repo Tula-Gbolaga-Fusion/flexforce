@@ -1,5 +1,10 @@
-import { useMemo } from "react";
-import { PortalWrapper, Table, Button } from "../../components";
+import { useMemo, useState } from "react";
+import {
+  PortalWrapper,
+  Table,
+  Button,
+  JobDetailsModal,
+} from "../../components";
 import { jobsList } from "../../utils/dummyData";
 import {
   FaMapMarkerAlt,
@@ -9,6 +14,8 @@ import {
 } from "react-icons/fa";
 
 const JobSeekerApplications = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [jobId, setJobId] = useState("");
   const reducedJobs = jobsList.slice(8, 15);
   const columns = useMemo(
     () => [
@@ -88,7 +95,15 @@ const JobSeekerApplications = () => {
       {
         header: "Actions",
         accessor: "id",
-        cell: (row) => <Button title={"View Details"} />,
+        cell: (row) => (
+          <Button
+            title={"View Details"}
+            onClick={() => {
+              setJobId(row?.id);
+              setIsOpen(true);
+            }}
+          />
+        ),
       },
     ],
     []
@@ -99,6 +114,14 @@ const JobSeekerApplications = () => {
         <h1 className="text-[20px] text-primary">Jobs you have applied to </h1>
         <Table tableData={reducedJobs} columns={columns} />
       </div>
+      <JobDetailsModal
+        isOpen={isOpen}
+        closeFunc={() => {
+          setIsOpen(false);
+          setJobId("");
+        }}
+        jobId={jobId}
+      />
     </PortalWrapper>
   );
 };
